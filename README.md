@@ -1,34 +1,131 @@
-# 🛠️ Backend CRUD Server (TypeScript)
+# Express + JWT Authentication (TypeScript)
 
-A simple and scalable **Node.js + Express + TypeScript** backend server that performs full **CRUD operations** on a data model. Ideal for RESTful API development with clean architecture and type safety.
+A boilerplate project for building a REST API with **Express**,
+**TypeScript**, and **JWT authentication**.
 
----
+## Features
 
-## 📦 Tech Stack
+-   🚀 Express.js for building REST APIs\
+-   🔐 JWT (JSON Web Tokens) for authentication & authorization\
+-   📝 TypeScript with type safety\
+-   ⚡ Middleware for request validation\
+-   🗂️ Project structure for scalability
 
-- [Node.js](https://nodejs.org/)
-- [Express](https://expressjs.com/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/) (or any database)
-- [dotenv](https://www.npmjs.com/package/dotenv) – for environment variables
-- [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) – for development
+------------------------------------------------------------------------
 
----
+## Getting Started
 
-## 📁 Folder Structure
+### 1. Clone the repo
 
+``` bash
+git clone https://github.com/your-username/express-jwt-typescript.git
+cd express-jwt-typescript
 ```
-├── src
-│ ├── cloudinary/ # Cloudinary configuration & upload handlers
-│ ├── controllers/ # Route controllers (CRUD logic)
-│ ├── loggers/ # Winston/Custom logger configuration
-│ ├── middlewares/ # Error handling, validation, auth middlewares
-│ ├── models/ # Mongoose or database models
-│ ├── schema/ # Zod or Joi validation schemas
-│ ├── connect.db.ts # Database connection file
-│ └── server.ts # Entry point for Express app
-├── .env # Environment variables
-├── .gitignore # Files to ignore in Git
-├── package.json # Project metadata and scripts
-├── tsconfig.json # TypeScript compiler configuration
-└── README.md # Project overview (this file)
+
+### 2. Install dependencies
+
+``` bash
+npm install
+```
+
+### 3. Setup environment variables
+
+Create a `.env` file in the root of the project:
+
+``` env
+PORT=5000
+JWT_SECRET=your_secret_key
+TOKEN_EXPIRES_IN=1h
+```
+
+### 4. Run the development server
+
+``` bash
+npm run dev
+```
+
+### 5. Build for production
+
+``` bash
+npm run build
+npm start
+```
+
+------------------------------------------------------------------------
+
+## Project Structure
+
+    src/
+    ├── controllers/      # Route handlers
+    ├── middlewares/      # Auth & error middlewares
+    ├── routes/           # API routes
+    ├── services/         # Business logic
+    ├── types/            # TypeScript types
+    ├── utils/            # Helper functions
+    ├── index.ts          # App entry point
+
+------------------------------------------------------------------------
+
+## Example Routes
+
+### Register a User
+
+``` http
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+```
+
+### Login
+
+``` http
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+```
+
+*Response:*
+
+``` json
+{
+  "token": "your_jwt_token"
+}
+```
+
+### Protected Route
+
+``` http
+GET /api/profile
+Authorization: Bearer <token>
+```
+
+------------------------------------------------------------------------
+
+## Scripts
+
+-   `npm run dev` → Run in dev mode with nodemon & ts-node\
+-   `npm run build` → Build TypeScript into JavaScript (`dist/`)\
+-   `npm start` → Run compiled JavaScript in production
+
+------------------------------------------------------------------------
+
+## Tech Stack
+
+-   [Express](https://expressjs.com/)\
+-   [TypeScript](https://www.typescriptlang.org/)\
+-   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)\
+-   [dotenv](https://github.com/motdotla/dotenv)
+
+------------------------------------------------------------------------
+
+## License
+
+MIT © Sahil Shrestha
